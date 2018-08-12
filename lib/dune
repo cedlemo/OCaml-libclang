@@ -1,0 +1,15 @@
+(library
+  (name        libclang)
+  (public_name libclang)
+  (libraries ctypes ctypes.foreign str)
+  (flags :standard)
+  (c_flags         (:include c_flags.sexp))
+  (c_library_flags (:include c_library_flags.sexp))
+  (ocamlc_flags (-cclib ("-L/usr/lib,-dllpath/usr/lib")))
+)
+
+(rule
+  (targets c_flags.sexp c_library_flags.sexp)
+  (deps    (:x ../config/discover.exe))
+  (action  (run %{x} -ocamlc %{ocamlc}))
+)

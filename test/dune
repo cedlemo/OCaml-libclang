@@ -1,0 +1,9 @@
+(executables
+  (names test)
+  (libraries   libclang oUnit str)
+)
+
+(alias
+  (name    runtest)
+  (deps    (:x test.exe))
+  (action  (run %{x})))
